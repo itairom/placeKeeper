@@ -73,8 +73,8 @@ function renderLocations() {
         return `<tr>
         <td>${location.id}</td>
         <td>${location.name}</td>
-        <td>${parseInt(location.lng)}</td>
-        <td>${parseInt(location.lat)}</td>
+        <td>${(location.lng).toFixed(3)}</td>
+        <td>${(location.lat).toFixed(3)}</td>
         <td >
         <button onclick="onDeleteLocations('${location.id}')" class="">Delete</button>
         </td>
@@ -89,14 +89,17 @@ function onDeleteLocations(locationId) {
 }
 
 function onSaveLocation(coord) {
-    saveLocation(coord)
-    renderLocations()
+    document.querySelector('.modal').style.visibility = 'visible'
+    setCoordinate(coord)
+        // renderLocations()
 }
 
 function onSetName(ev) {
-    document.querySelector('.usr-form').style.display = 'block'
+    let coord = getCoordinate()
     ev.preventDefault()
-    elName = document.querySelector('input[name=name-form]')
-    console.log(elName);
-
+    var elName = document.querySelector("input[name='name-form']")
+    saveLocation(coord, elName.value)
+    elName = ''
+    document.querySelector('.modal').style.visibility = 'hidden'
+    renderLocations()
 }

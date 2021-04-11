@@ -1,11 +1,20 @@
 'use strict'
 const LOCATION_KEY = 'userLocation'
 let gLocations
+let gCurrCoor
 
 
-function saveLocation(coord) {
+function setCoordinate(coord) {
+    gCurrCoor = coord
+}
+
+function getCoordinate() {
+    return gCurrCoor
+}
+
+
+function saveLocation(coord, name) {
     let latLng = JSON.parse(coord)
-    let name = prompt('enter name for location')
 
     gLocations.push({
         name,

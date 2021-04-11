@@ -11,10 +11,11 @@
 
 <body onload="init()">
 
-    <h1>Map</h1>
-    <div id="map" style="height: 500px;"></div>
+    <h1>Your favorite places</h1>
+    <div id="map"></div>
     <input class="my-location" onclick="goToMyLocation()" type="image" src="img/PinClipart.com_location-clip-art_5450500.png">
-    <section>
+    <section class="table-section">
+        <div class="space1"></div>
         <table class="table-body">
             <thead>
                 <td>Id</td>
@@ -26,16 +27,16 @@
             <tbody class="table-container">
             </tbody>
         </table>
+        <div class="space2"></div>
     </section>
 
     <!-- MODAL. -->
     <div class="modal">
-        <form style="display: none;" class="usr-form" onsubmit="onSetName(event)">
+        <form class="usr-form" onsubmit="onSetName(event)">
             <label>Enter name:
                 <input type="text" name="name-form" class="">
                 <button>Submit</button>
             </label>
-
         </form>
     </div>
 

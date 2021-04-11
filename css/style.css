@@ -1,13 +1,79 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100%;
+    background-color: aliceblue;
+}
+
+h1 {
+    text-align: center;
+}
+
+#map {
+    height: 400px;
+    /* position: fixed; */
+    border: black solid 1px;
+}
+
 .my-location {
     height: 40px;
     width: 40px;
+    position: relative;
+    margin-top: -80px;
+    margin-left: 30px;
+}
+
+.table-section {
+    display: flex;
+}
+
+.table-body {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px black solid;
+    /* flex-grow: 2; */
+}
+
+.space1 {
+    display: flex;
+    background-color: aliceblue;
+    flex-grow: 1;
+}
+
+.space2 {
+    display: flex;
+    background-color: aliceblue;
+    flex-grow: 1;
 }
 
 table {
-    background-color: blanchedalmond;
-    border: 1px black solid;
+    display: block;
+    background-color: rgba(169, 177, 182, 0.062);
 }
 
 td {
     border: 1px black solid;
+    width: 70px;
+    text-align: center;
+}
+
+.modal {
+    visibility: hidden;
+    display: none;
+    background-color: rgb(75, 60, 88);
+    display: flex;
+    height: 200px;
+    width: 200px;
+    margin-top: -100px;
+    margin-left: 60px;
+    z-index: 1;
+}
+
+button {
+    background-color: rgb(12, 69, 102);
+    color: white;
 }
