@@ -1,46 +1,71 @@
 'use strict'
 
-let map, infoWindow;
+let map
+let infoWindow;
+let gLocations = []
+
 
 function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 29.580902552664703, lng: 34.96307066079831 },
+    const myLatlng = { lat: 29.580902552664703, lng: 34.96307066079831 };
+
+    map = new google.maps.Map(document.querySelector("#map"), {
+        center: myLatlng,
         zoom: 10,
 
     });
+
+    let infoWindow = new google.maps.InfoWindow({
+        position: myLatlng,
+    });
+    infoWindow.open(map);
+    // Configure the click listener.
+    map.addListener("click", (mapsMouseEvent) => {
+        // Close the current InfoWindow.
+        infoWindow.close();
+        // Create a new InfoWindow.
+        infoWindow = new google.maps.InfoWindow({
+            position: mapsMouseEvent.latLng
+        });
+        console.log((JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)));
+        saveLocation((JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)))
+
+    });
+
+
+
 }
+
+
+
+
+
 
 function goToMyLocation() {
     infoWindow = new google.maps.InfoWindow();
-    const locationButton = document.createElement("button");
-    locationButton.textContent = "Pan to Current Location";
-    locationButton.classList.add("custom-map-control-button");
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-    locationButton.addEventListener("click", () => {
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    };
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent("Location found.");
-                    infoWindow.open(map);
-                    map.setCenter(pos);
-                },
-                () => {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                }
-            );
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        }
-    });
-}
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                    zoom: 10,
 
+                };
+                infoWindow.setPosition(pos);
+                infoWindow.setContent("Location found.");
+                infoWindow.open(map);
+                map.setCenter(pos);
+
+            },
+            () => {
+                handleLocationError(true, infoWindow, map.getCenter());
+            }
+        );
+    } else {
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+    // });
+}
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
@@ -51,3 +76,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     );
     infoWindow.open(map);
 }
+
+
+// let infoWindow1 = new google.maps.InfoWindow({
+//     content: "Click the map to get Lat/Lng!",
+//     position: myLatlng,
+// });
+// infoWindow1.open(map);
