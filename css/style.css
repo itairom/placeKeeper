@@ -63,14 +63,16 @@ td {
 
 .modal {
     visibility: hidden;
-    display: none;
-    background-color: rgb(75, 60, 88);
+    background-color: rgb(226, 208, 243);
     display: flex;
-    height: 200px;
-    width: 200px;
-    margin-top: -100px;
-    margin-left: 60px;
+    flex-direction: column;
+    justify-content: center;
+    height: 100px;
+    width: 300px;
+    margin-top: -200px;
+    margin-left: 200px;
     z-index: 1;
+    border: black solid 0.5px;
 }
 
 button {
