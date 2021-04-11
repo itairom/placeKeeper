@@ -1,28 +1,47 @@
 'use strict'
-const KEY = 'userLocation'
+const LOCATION_KEY = 'userLocation'
+let gLocations
+
 
 function saveLocation(coord) {
     let latLng = JSON.parse(coord)
     let name = prompt('enter name for location')
 
-    const userLocation = {
+    gLocations.push({
         name,
         lat: latLng.lat,
         lng: latLng.lng,
         id: makeId()
-    }
-    saveToStorage(KEY, userLocation)
+    })
+
+    saveToStorage(LOCATION_KEY, gLocations)
 }
 
 function getUserLocations() {
-    let userLocations = getFromStorage(KEY)
-    if (!userLocations) {
-        userLocations = {
+    gLocations = getFromStorage(LOCATION_KEY)
+
+    if (!gLocations) {
+        let locations = []
+
+        locations.push({
             name: 'itai',
             lat: '23',
             lng: '28',
             id: makeId()
-        }
+        })
+        gLocations = locations
+        return gLocations
+
     }
-    return userLocations
+
+
+    return gLocations
+}
+
+function deleteLocation(locationId) {
+    var locationIdx = gLocations.findIndex((location) => {
+        return locationId === location.id
+    })
+    gLocations.splice(locationIdx, 1)
+    saveToStorage(LOCATION_KEY, gLocations)
 }

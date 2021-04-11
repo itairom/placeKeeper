@@ -9,13 +9,37 @@
 
 </head>
 
-<body onload="initMap()">
+<body onload="init()">
 
     <h1>Map</h1>
-
     <div id="map" style="height: 500px;"></div>
-
     <input class="my-location" onclick="goToMyLocation()" type="image" src="img/PinClipart.com_location-clip-art_5450500.png">
+    <section>
+        <table class="table-body">
+            <thead>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Longitude</td>
+                <td>Latitude</td>
+                <td>Delete</td>
+            </thead>
+            <tbody class="table-container">
+            </tbody>
+        </table>
+    </section>
+
+    <!-- MODAL. -->
+    <div class="modal">
+        <form style="display: none;" class="usr-form" onsubmit="onSetName(event)">
+            <label>Enter name:
+                <input type="text" name="name-form" class="">
+                <button>Submit</button>
+            </label>
+
+        </form>
+    </div>
+
+
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 
 
