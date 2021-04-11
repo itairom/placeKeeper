@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User preference</title>
+</head>
+
+<body onload="init()">
+    <h1>User preference</h1>
+    <form class="usr-form" onsubmit="onSetUserPref(event)">
+        <label>BackGround color
+        <input type="color" name="color-form" class="input-bgc"></label>
+        <label>Text color
+        <input type="color" name="color-form" class="input-clr"></label>
+        <button>Submit</button>
+    </form>
+
+    <script src="js/storageService.js"></script>
+    <script src="js/utilService.js"></script>
+    <script src="js/userPrefService.js"></script>
+    <script src="js/placeService.js"></script>
+    <script src="js/controller.js"></script>
+</body>
+
+</html>
